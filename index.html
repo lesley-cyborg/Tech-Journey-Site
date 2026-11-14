@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tech Journey Site — NINJA</title>
+  <title>My Learning Journey — Networking and Systems</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Skip link for keyboard/screen reader users to bypass navigation -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <header class="site-header">
     <h1>My Learning Journey</h1>
-    <p class="tagline">Hands-on projects in networking, Linux, and systems by NINJA.</p>
+    <p class="tagline">Hands-on projects in networking, Linux, and the tools that connect them.</p>
   </header>
 
-  <nav class="site-nav" aria-label="Main navigation">
+  <nav class="site-nav" aria-label="Page sections">
     <ul>
       <li><a href="#intro">Introduction</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -27,22 +26,24 @@
   <main id="main-content">
     <section id="intro" class="section">
       <h2>Introduction</h2>
-      <p>Hi, I'm NINJA. I am building small, hands-on projects to learn networking and Linux systems. This page shares what I'm studying and the projects I've put together along the way.</p>
+      <p>Hi, I'm a learner building small hands-on projects in networking and Linux systems. This page shares what I'm studying and the projects I've put together along the way.</p>
     </section>
 
     <section id="projects" class="section">
       <h2>Learning Projects</h2>
       <p>Use the filters to browse projects by category.</p>
 
-      <!-- Native buttons ensure keyboard accessibility without extra JS -->
       <div class="filter-bar" role="group" aria-label="Filter projects by category">
-        <button type="button" class="filter-btn active" data-filter="all">All</button>
-        <button type="button" class="filter-btn" data-filter="networking">Networking</button>
-        <button type="button" class="filter-btn" data-filter="systems">Systems</button>
-        <button type="button" class="filter-btn" data-filter="development">Development</button>
+        <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="filter-btn" data-filter="networking" aria-pressed="false">Networking</button>
+        <button type="button" class="filter-btn" data-filter="systems" aria-pressed="false">Systems</button>
+        <button type="button" class="filter-btn" data-filter="development" aria-pressed="false">Development</button>
       </div>
+      
+      <!-- Live region for screen reader announcements -->
+      <div id="filter-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-      <div class="projects-grid">
+      <div class="projects-grid" id="projects-grid">
         <article class="project-card" data-category="networking">
           <h3>Home Network</h3>
           <p class="project-meta">Category: Networking</p>
@@ -65,7 +66,6 @@
         </article>
       </div>
 
-      <!-- Hidden by default, shown via JS when a filter yields zero results -->
       <p class="empty-state" id="empty-state" hidden>
         No projects in this category yet. Check back soon.
       </p>
