@@ -1,31 +1,46 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
-  const emptyState = document.getElementById('empty-state');
+(function () {
+  'use strict';
 
+  var filterButtons = document.querySelectorAll('.filter-btn');
+  var projectCards = document.querySelectorAll('.project-card');
+  var emptyState = document.getElementById('empty-state');
+  var filterStatus = document.getElementById('filter-status');
+
+  function applyFilter(category) {
+    var visibleCount = 0;
+
+    // Update button states
+    filterButtons.forEach(function (btn) {
+      var isActive = btn.getAttribute('data-filter') === category;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', String(isActive));
+    });
+
+    // Filter cards
+    projectCards.forEach(function (card) {
+      var shouldShow = category === 'all' || card.getAttribute('data-category') === category;
+      card.hidden = !shouldShow;
+      if (shouldShow) visibleCount++;
+    });
+
+    // Handle empty state
+    emptyState.hidden = visibleCount > 0;
+    
+    // Announce result count to screen readers
+    if (visibleCount === 0) {
+      filterStatus.textContent = 'No projects found in this category.';
+    } else {
+      filterStatus.textContent = 'Showing ' + visibleCount + ' project' + (visibleCount === 1 ? '' : 's') + '.';
+    }
+  }
+
+  // Attach event listeners
   filterButtons.forEach(function (button) {
     button.addEventListener('click', function () {
-      // Update visual active state
-      filterButtons.forEach(function (btn) {
-        btn.classList.remove('active');
-      });
-      button.classList.add('active');
-
-      const filter = button.getAttribute('data-filter');
-      let visibleCount = 0;
-
-      // Filter cards based on data-category attribute
-      projectCards.forEach(function (card) {
-        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-          card.hidden = false;
-          visibleCount++;
-        } else {
-          card.hidden = true;
-        }
-      });
-
-      // Show empty state message only if no cards match the filter
-      emptyState.hidden = visibleCount > 0;
+      applyFilter(button.getAttribute('data-filter'));
     });
   });
-});
+
+  // Initialize
+  applyFilter('all');
+})();
