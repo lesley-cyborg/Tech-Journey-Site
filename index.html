@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Journey Site — NINJA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Skip link for keyboard/screen reader users to bypass navigation -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <h1>My Learning Journey</h1>
+    <p class="tagline">Hands-on projects in networking, Linux, and systems by NINJA.</p>
+  </header>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <ul>
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <section id="intro" class="section">
+      <h2>Introduction</h2>
+      <p>Hi, I'm NINJA. I am building small, hands-on projects to learn networking and Linux systems. This page shares what I'm studying and the projects I've put together along the way.</p>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Learning Projects</h2>
+      <p>Use the filters to browse projects by category.</p>
+
+      <!-- Native buttons ensure keyboard accessibility without extra JS -->
+      <div class="filter-bar" role="group" aria-label="Filter projects by category">
+        <button type="button" class="filter-btn active" data-filter="all">All</button>
+        <button type="button" class="filter-btn" data-filter="networking">Networking</button>
+        <button type="button" class="filter-btn" data-filter="systems">Systems</button>
+        <button type="button" class="filter-btn" data-filter="development">Development</button>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card" data-category="networking">
+          <h3>Home Network</h3>
+          <p class="project-meta">Category: Networking</p>
+          <p>A home lab network with VLANs, a pfSense router, and Wi-Fi segmentation to isolate IoT devices from trusted traffic.</p>
+          <a href="#projects" class="project-link">Read about the Home Network setup</a>
+        </article>
+
+        <article class="project-card" data-category="networking">
+          <h3>DNS Notes</h3>
+          <p class="project-meta">Category: Networking</p>
+          <p>Personal notes on DNS record types, resolution flow, and common troubleshooting commands like dig and nslookup.</p>
+          <a href="#projects" class="project-link">Read the DNS Notes</a>
+        </article>
+
+        <article class="project-card" data-category="systems">
+          <h3>Linux Basics</h3>
+          <p class="project-meta">Category: Systems</p>
+          <p>A guided walkthrough of essential Linux commands, file permissions, and shell scripting for everyday tasks.</p>
+          <a href="#projects" class="project-link">Explore Linux Basics</a>
+        </article>
+      </div>
+
+      <!-- Hidden by default, shown via JS when a filter yields zero results -->
+      <p class="empty-state" id="empty-state" hidden>
+        No projects in this category yet. Check back soon.
+      </p>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <ul class="skills-list">
+        <li>Networking fundamentals (TCP/IP, DNS, VLANs)</li>
+        <li>Linux command line and shell scripting</li>
+        <li>Home lab setup and virtualization</li>
+        <li>Troubleshooting with ping, traceroute, and dig</li>
+        <li>Documentation and technical writing</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>Reach out using the placeholder details below.</p>
+      <ul class="contact-list">
+        <li>Email: <a href="mailto:learner@example.com">learner@example.com</a></li>
+        <li>GitHub: <a href="https://example.com/learner">example.com/learner</a></li>
+        <li>Location: Example City, EX 00000</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built with plain HTML, CSS, and JavaScript. No frameworks, analytics, or tracking.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

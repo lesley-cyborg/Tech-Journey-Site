@@ -1,0 +1,267 @@
+/* Reset and base styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Accessible color contrast: Dark text on light backgrounds passes WCAG AA/AAA */
+  --color-bg: #ffffff;
+  --color-surface: #f4f6f8;
+  --color-text: #1a1a1a;
+  --color-muted: #4a4a4a;
+  --color-accent: #0a58ca;
+  --color-accent-hover: #084298;
+  --color-border: #c9ced4;
+  --color-focus: #d35400; /* High contrast orange for visible focus state */
+  --radius: 8px;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  /* Prevents horizontal scrolling on small viewports */
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Skip link: hidden until focused by keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -50px;
+  left: var(--space-sm);
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  padding: var(--space-xs) var(--space-sm);
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.2s ease-in-out;
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+}
+
+/* Global focus state for keyboard accessibility */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* Header and Navigation */
+.site-header {
+  background-color: var(--color-surface);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header h1 {
+  margin: 0 0 var(--space-xs);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 1.05rem;
+}
+
+.site-nav {
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-sm) var(--space-md);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  justify-content: center;
+}
+
+.site-nav a {
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.site-nav a:hover {
+  background-color: var(--color-surface);
+}
+
+/* Main Content Layout */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.section {
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.section h2 {
+  margin-top: 0;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+}
+
+/* Project Filters */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin: var(--space-sm) 0 var(--space-md);
+}
+
+.filter-btn {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.filter-btn:hover {
+  background-color: var(--color-surface);
+  border-color: var(--color-accent);
+}
+
+.filter-btn.active {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+}
+
+/* Project Cards */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.project-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+}
+
+/* The hidden attribute is toggled by JS. This ensures CSS hides it properly. */
+.project-card[hidden] {
+  display: none;
+}
+
+.project-card h3 {
+  margin: 0 0 var(--space-xs);
+  font-size: 1.25rem;
+}
+
+.project-meta {
+  margin: 0 0 var(--space-sm);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.project-link {
+  display: inline-block;
+  margin-top: var(--space-xs);
+  font-weight: 600;
+}
+
+/* Empty State */
+.empty-state {
+  margin: var(--space-md) 0;
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.empty-state[hidden] {
+  display: none;
+}
+
+/* Skills and Contact Lists */
+.skills-list {
+  margin: var(--space-sm) 0;
+  padding-left: 1.25rem;
+}
+
+.skills-list li {
+  margin-bottom: var(--space-xs);
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0;
+}
+
+.contact-list li {
+  margin-bottom: var(--space-xs);
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: var(--space-md);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* Responsive adjustment for larger screens */
+@media (min-width: 640px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
